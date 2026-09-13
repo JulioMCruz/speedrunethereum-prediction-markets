@@ -19,8 +19,9 @@ export default deployScript(
     const { deployer } = env.namedAccounts;
 
     const question = "Will the green car win the race?";
-    const initialLiquidity = parseEther("1");
-    const initialTokenValue = parseEther("0.01");
+    const isLocalNetwork = env.name === "localhost" || env.name === "hardhat";
+    const initialLiquidity = parseEther(isLocalNetwork ? "1" : "0.02");
+    const initialTokenValue = parseEther(isLocalNetwork ? "0.01" : "0.0002");
     const initialProbability = 50;
     const percentageLocked = 10;
     const liquidityProvider = deployer;
